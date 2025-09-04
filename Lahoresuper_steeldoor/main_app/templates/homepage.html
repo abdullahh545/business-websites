@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% block content %}
+<section class="hero">
+  <h1>Welcome to Our Company</h1>
+  <p>Providing top-notch steel door solutions.</p>
+</section>
+
+<section class="services">
+  <h2>Our Services</h2>
+  <ul>
+    {% for service in services %}
+    <li>
+      <h3>{{ service.name }}</h3>
+      <p>{{ service.description }}</p>
+      {% if user.is_authenticated %}
+      <a href="{% url 'service_booking_create' service.id %}">Book Now</a>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+
+<section class="about">
+  <h2>About Us</h2>
+  <p>Learn more about our mission and values.</p>
+</section>
+{% endblock %}
