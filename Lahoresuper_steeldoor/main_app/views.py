@@ -1,135 +1,93 @@
 from django.shortcuts import render
-from.models import serviceBooking, service
-from .forms import ServiceForm, ServiceBookingForm
-
-# Create your views here.
-from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
+from .models import Service, ServiceBooking, User  # Use your custom User
+from .forms import ServiceForm, ServiceBookingForm, CustomUserForm
+from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView, TemplateView
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.forms import UserCreationForm
 
 
-class serviceListView(LoginRequiredMixin,ListView):
-    model = service
+class ServiceListView(LoginRequiredMixin, ListView):
+    model = Service
     template_name = "service/service_list.html"
-    context_object_name = "service"
+    context_object_name = "services"
 
-
-    def get_queryset(self):
-        return super().get_queryset()
-
-
-class serviceDetailView(DetailView):
-    model = service
+class ServiceDetailView(DetailView):
+    model = Service
     template_name = "service/service_detail.html"
     context_object_name = "service"
 
-
-
-class serviceCreateView(CreateView):
-    model = service
-    form_class = service
-    template_name = "service/service_form.html"
-
-
-    def get_success_url(self):
-        return reverse("service_detail", kwargs={"pk": self.object.pk})
-
-
-class serviceUpdateView(UpdateView):
-    model = service
+class ServiceCreateView(CreateView):
+    model = Service
     form_class = ServiceForm
     template_name = "service/service_form.html"
 
     def get_success_url(self):
         return reverse("service_detail", kwargs={"pk": self.object.pk})
 
+class ServiceUpdateView(UpdateView):
+    model = Service
+    form_class = ServiceForm
+    template_name = "service/service_form.html"
 
-class serviceDeleteView(DeleteView):
-    model = service
+    def get_success_url(self):
+        return reverse("service_detail", kwargs={"pk": self.object.pk})
+
+class ServiceDeleteView(DeleteView):
+    model = Service
     template_name = "service/service_confirm_delete.html"
     success_url = reverse_lazy("service_list")
 
 
 
+class ServiceBookingListView(ListView):
+    model = ServiceBooking
+    template_name = "serviceBooking/serviceBooking_list.html"
+    context_object_name = "serviceBookings"
 
+class ServiceBookingDetailView(DetailView):
+    model = ServiceBooking
+    template_name = "serviceBooking/serviceBooking_detail.html"
+    context_object_name = "serviceBooking"
+    pk_url_kwarg = "serviceBooking_id"  
 
-class serviceBookingCreateView(LoginRequiredMixin,CreateView):
-    model = serviceBooking
-    template_name = 'serviceBooking/serviceBookingform.html'
+class ServiceBookingCreateView(LoginRequiredMixin, CreateView):
+    model = ServiceBooking
     form_class = ServiceBookingForm
+    template_name = "serviceBooking/serviceBooking_create.html"
 
     def get_success_url(self):
-        return reverse('serviceBooking_detail',kwargs={'serviceBooking_id':self.object.pk})
+        return reverse("serviceBooking_detail", kwargs={"serviceBooking_id": self.object.pk})
 
-class serviceBookingListView(ListView):
-    model = serviceBooking
-    template_name = 'serviceBooking/serviceBooking_list.html'
-    context_object_name = 'serviceBooking'
-
-
-class serviceBookingkUpdateView(LoginRequiredMixin,UpdateView):
-    model = serviceBooking
-    template_name = 'serviceBooking/serviceBookingform.html'
+class ServiceBookingUpdateView(LoginRequiredMixin, UpdateView):
+    model = ServiceBooking
     form_class = ServiceBookingForm
-    success_url = "/booserviceBooking/"
-    pk_url_kwarg = 'serviceBooking_id' #change the dynamic url in the urls.py
+    template_name = "serviceBooking/serviceBooking_create.html"
+    pk_url_kwarg = "serviceBooking_id"
+
+    def get_success_url(self):
+        return reverse("serviceBooking_detail", kwargs={"serviceBooking_id": self.object.pk})
+
+class ServiceBookingDeleteView(DeleteView):
+    model = ServiceBooking
+    template_name = "serviceBooking/serviceBooking_confirm_delete.html"
+    success_url = reverse_lazy("serviceBooking_list")
 
 
-class serviceBookingDetailView(DetailView):
-    model = serviceBooking
-    template_name = 'serviceBooking/serviceBooking_detail.html'
-    context_object_name = 'serviceBooking'
-    pk_url_kwarg = 'serviceBooking_id' #change the dynamic url in the urls.py
-
-
-# Gets the favorites for the user for this book if he did favorite it
-    def get_context_data(self, **kwargs):
-        ctx = super().get_context_data(**kwargs)
-        user = self.request.user
-        ctx['did_favorite'] = serviceBooking.objects.filter(user = user, serviceBooking = self.object).exists()
-        return ctx
-
-
-class serviceBookingkDeleteView(DeleteView):
-    model = serviceBooking
-    success_url = "/serviceBooking/"
-
-
-
-
-
-from django.views.generic import TemplateView
-from .models import Service
 
 class HomePageView(TemplateView):
     template_name = "homepage.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["services"] = Service.objects.all()   # pass all services to template
+        context["services"] = Service.objects.all()
         return context
 
-
-    
-
-
-
-
-
-
-
-
-from django.contrib.auth.models import User # this is the user model we use to log in
-from django.contrib.auth.forms import UserCreationForm
 class SignUpView(CreateView):
     model = User
-    form_class = UserCreationForm
-    success_url = reverse_lazy("login")
-    template_name = 'registration/sign-up.html'
-    
-
-
-
+    form_class = CustomUserForm
+    success_url = reverse_lazy("homepage")
+    template_name = "registration/sign-up.html"
 
 
 
