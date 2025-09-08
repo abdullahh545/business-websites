@@ -48,13 +48,13 @@ class ServiceBookingListView(ListView):
 
     def get_queryset(self):
         user = self.request.user
-        if user.role == 'ADMIN':
-            # Admin sees all bookings
+        # normalize role to uppercase just in case
+        if getattr(user, 'role', '').upper() == 'ADMIN':
             return ServiceBooking.objects.all()
-        else:
-            # Normal user sees only their own bookings
-            return ServiceBooking.objects.filter(user=user)
-
+        # normal user sees only their own bookings
+        return ServiceBooking.objects.filter(user=user)
+    
+    
 class ServiceBookingDetailView(DetailView):
     model = ServiceBooking
     template_name = "serviceBooking/serviceBooking_detail.html"
