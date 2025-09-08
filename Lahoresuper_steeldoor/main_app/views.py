@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from .models import Service, ServiceBooking, User  # Use your custom User
-from .forms import ServiceForm, ServiceBookingForm, CustomUserForm
+from .forms import ServiceForm, ServiceBookingForm,CustomUserCreationForm
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView, TemplateView
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
-
+from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import UserCreationForm
 
 class ServiceListView(LoginRequiredMixin, ListView):
     model = Service
@@ -20,7 +21,7 @@ class ServiceDetailView(DetailView):
 class ServiceCreateView(CreateView):
     model = Service
     form_class = ServiceForm
-    template_name = "service/service_form.html"
+    template_name = "service/service_create.html"
 
     def get_success_url(self):
         return reverse("service_detail", kwargs={"pk": self.object.pk})
@@ -83,11 +84,16 @@ class HomePageView(TemplateView):
         context["services"] = Service.objects.all()
         return context
 
+
+User = get_user_model()
+class CustomUserCreationForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        model = User
+        fields = UserCreationForm.Meta.fields
+
 class SignUpView(CreateView):
-    model = User
-    form_class = CustomUserForm
-    success_url = reverse_lazy("homepage")
-    template_name = "registration/sign-up.html"
-
-
+    model=User
+    form_class = CustomUserCreationForm
+    template_name='registration/sign-up.html'
+    success_url = reverse_lazy('home')
 

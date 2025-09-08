@@ -1,0 +1,9 @@
+{% extends "base.html" %} {% block content %}
+<h2>Are you sure you want to delete this booking?</h2>
+<p>{{ service }}</p>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Yes, delete</button>
+</form>
+<a href="{% url 'service_list' %}">Cancel</a>
+{% endblock %}

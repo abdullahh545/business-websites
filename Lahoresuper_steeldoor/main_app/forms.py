@@ -13,6 +13,6 @@ class ServiceBookingForm(forms.ModelForm):
         fields = ["customer_name", "customer_email", "customer_phone", "service", "status"]
 
 
-class CustomUserForm(UserCreationForm):
+class CustomUserCreationForm(UserCreationForm):
     model = User
     fields = ("username", "password1")  # Add other fields as needed
