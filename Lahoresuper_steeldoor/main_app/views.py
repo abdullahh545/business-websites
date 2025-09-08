@@ -46,6 +46,15 @@ class ServiceBookingListView(ListView):
     template_name = "serviceBooking/serviceBooking_list.html"
     context_object_name = "serviceBookings"
 
+    def get_queryset(self):
+        user = self.request.user
+        if user.role == 'ADMIN':
+            # Admin sees all bookings
+            return ServiceBooking.objects.all()
+        else:
+            # Normal user sees only their own bookings
+            return ServiceBooking.objects.filter(user=user)
+
 class ServiceBookingDetailView(DetailView):
     model = ServiceBooking
     template_name = "serviceBooking/serviceBooking_detail.html"
@@ -56,6 +65,11 @@ class ServiceBookingCreateView(LoginRequiredMixin, CreateView):
     model = ServiceBooking
     form_class = ServiceBookingForm
     template_name = "serviceBooking/serviceBooking_create.html"
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+    
 
     def get_success_url(self):
         return reverse("serviceBooking_detail", kwargs={"serviceBooking_id": self.object.pk})
@@ -73,6 +87,10 @@ class ServiceBookingDeleteView(DeleteView):
     model = ServiceBooking
     template_name = "serviceBooking/serviceBooking_confirm_delete.html"
     success_url = reverse_lazy("serviceBooking_list")
+
+    def get_success_url(self):
+        return reverse("serviceBooking_list", kwargs={"serviceBooking_id": self.object.pk})
+
 
 
 

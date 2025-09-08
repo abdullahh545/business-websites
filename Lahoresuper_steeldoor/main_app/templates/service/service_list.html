@@ -4,7 +4,12 @@
   {% for service in services %}
   <li>
     <a href="{% url 'service_detail' service.pk %}">{{ service.name }}</a>
-    - ${{ service.price }}
+
+    - {{ service.price }}bd
+    {% if call.user == user or user.role == user.Role.ADMIN %}
+    <a href="{% url 'service_update' service.id %}">Edit</a> 
+    <a href="{% url 'service_delete' service.id %}">Delete</a> 
+    {% endif %}
   </li>
   {% empty %}
   <li>No services found.</li>

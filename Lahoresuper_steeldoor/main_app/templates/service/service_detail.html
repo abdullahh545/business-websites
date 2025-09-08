@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block content %}</title>
-  </head>
-  <body>
-    <h2>aaa</h2>
-  </body>
-</html>
+{% extends "base.html" %} {% block content %}
+<h2>Services</h2>
+<h3>{{ service.name }}</h3>
+{{ service.description }}</p>
+<p>{{ service.price }} bd</p>
+<p>{{ service.product_image}}</p>
+<p>{{ service.isactive }}</p>
+
+<a href="{% url 'service_list' %}">Back to Service</a>
+
+{% endblock %}

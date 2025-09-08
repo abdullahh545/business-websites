@@ -9,8 +9,7 @@ class User(AbstractUser):
     role = models.CharField(
         max_length=20,
         choices=Role.choices,
-        default=Role.CUSTOMER,
-        null=True
+        default=Role.CUSTOMER
     )
 
 
@@ -46,6 +45,7 @@ class ServiceBooking(models.Model):
         ],
         default="Pending"
     )
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return f"{self.customer_name} - {self.service.name}"
