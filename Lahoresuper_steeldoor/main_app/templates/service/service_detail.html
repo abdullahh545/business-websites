@@ -3,7 +3,7 @@
 <h3>{{ service.name }}</h3>
 {{ service.description }}</p>
 <p>{{ service.price }} bd</p>
-<p>{{ service.product_image}}</p>
+<img src="{{service.product_image.url}}" alt="hHh">
 <p>{{ service.isactive }}</p>
 
 <a href="{% url 'service_list' %}">Back to Service</a>

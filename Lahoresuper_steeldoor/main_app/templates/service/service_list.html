@@ -8,7 +8,7 @@
     - {{ service.price }}bd
     {% if call.user == user or user.role == user.Role.ADMIN %}
     <a href="{% url 'service_update' service.id %}">Edit</a> 
-    <a href="{% url 'serviceBooking_confirm_delete' service.id %}">Delete</a> 
+    <a href="{% url 'service_delete' service.id %}">Delete</a> 
     {% endif %}
   </li>
   {% empty %}
@@ -17,4 +17,11 @@
 </ul>
 {% if call.user == user or user.role == user.Role.ADMIN %}
 <a href="{% url 'service_create' %}">create service</a>
-{% endif %} {% endblock %}
+{% endif %}
+
+      <a href="{% url 'serviceBooking_create' %}">Book Now</a>
+
+
+ 
+
+{% endblock %}

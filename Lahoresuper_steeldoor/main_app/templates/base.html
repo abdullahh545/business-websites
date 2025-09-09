@@ -7,11 +7,20 @@
   </head>
   <body>
     <nav>
+    {% if user.is_authenticated %}
       <a href="{% url 'home' %}">Home</a>
       <a href="{% url 'service_list' %}">Services</a>
       <a href="{% url 'serviceBooking_list' %}">Booking</a>
+      <form action="{% url 'logout' %}" method="post">
+          {% csrf_token %}
+          <button type="submit">logout</button>
+      </form>
+      {% else %}
       <a href="{% url 'signup' %}">Sign Up</a>
       <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+
+     
     </nav>
 
     <hr />

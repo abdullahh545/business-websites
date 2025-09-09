@@ -7,6 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import logout
 
 class ServiceListView(LoginRequiredMixin, ListView):
     model = Service
@@ -29,7 +30,7 @@ class ServiceCreateView(CreateView):
 class ServiceUpdateView(UpdateView):
     model = Service
     form_class = ServiceForm
-    template_name = "service/service_form.html"
+    template_name = "service/service_update.html"
 
     def get_success_url(self):
         return reverse("service_detail", kwargs={"pk": self.object.pk})
@@ -75,8 +76,7 @@ class ServiceBookingCreateView(LoginRequiredMixin, CreateView):
 class ServiceBookingUpdateView(LoginRequiredMixin, UpdateView):
     model = ServiceBooking
     form_class = ServiceBookingForm
-    template_name = "serviceBooking/serviceBooking_create.html"
-    pk_url_kwarg = "serviceBooking_id"
+    template_name = "serviceBooking/serviceBooking_update.html"
 
     def get_success_url(self):
         return reverse("serviceBooking_detail", kwargs={"serviceBooking_id": self.object.pk})
@@ -85,7 +85,6 @@ class ServiceBookingDeleteView(DeleteView):
     model = ServiceBooking
     template_name = "serviceBooking/serviceBooking_confirm_delete.html"
     success_url = reverse_lazy("serviceBooking_list")
-
     
 
 
@@ -110,4 +109,11 @@ class SignUpView(CreateView):
     form_class = CustomUserCreationForm
     template_name='registration/sign-up.html'
     success_url = reverse_lazy('home')
+
+
+def LogoutView(request):
+    logout(request)
+    from django.shortcuts import redirect
+    return redirect('login')
+
 

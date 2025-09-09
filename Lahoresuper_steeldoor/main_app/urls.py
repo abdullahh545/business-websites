@@ -10,6 +10,8 @@ from .views import (
     ServiceBookingDeleteView,
 
     SignUpView,
+
+    LogoutView,
 )
 
 urlpatterns = [
@@ -25,9 +27,9 @@ urlpatterns = [
     path("bookings/<int:serviceBooking_id>/", ServiceBookingDetailView.as_view(), name="serviceBooking_detail"),
     path("bookings/create/", ServiceBookingCreateView.as_view(), name="serviceBooking_create"),
     path("bookings/<int:pk>/update/", ServiceBookingUpdateView.as_view(), name="serviceBooking_update"),
-    path("bookings/<int:pk>/delete/", ServiceBookingDeleteView.as_view(), name="serviceBooking_confirm_delete"),
+    path("bookings/<int:pk>/delete/", ServiceBookingDeleteView.as_view(), name="serviceBooking_delete"),
 
     path("signup/", SignUpView.as_view(), name="signup"),
-    # path("login/", LoginView.as_view(), name="login"),
+    path("logout/", LogoutView, name='logout')
 
 ]
