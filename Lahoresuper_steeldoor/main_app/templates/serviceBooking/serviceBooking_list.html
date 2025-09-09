@@ -11,7 +11,7 @@
     {{booking.customer_name }} - {{ booking.service.name }}
      <a href="{% url 'serviceBooking_detail' booking.id %}">View</a> /
     <a href="{% url 'serviceBooking_update' booking.id %}">Edit</a> /
-    <a href="{% url 'serviceBooking_delete' booking.id %}">Delete</a>
+    <a href="{% url 'serviceBooking_confirm_delete' booking.id %}">Delete</a>
     
   </li>
 

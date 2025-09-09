@@ -48,13 +48,11 @@ class ServiceBookingListView(ListView):
 
     def get_queryset(self):
         user = self.request.user
-        # normalize role to uppercase just in case
         if getattr(user, 'role', '').upper() == 'ADMIN':
             return ServiceBooking.objects.all()
-        # normal user sees only their own bookings
         return ServiceBooking.objects.filter(user=user)
     
-    
+
 class ServiceBookingDetailView(DetailView):
     model = ServiceBooking
     template_name = "serviceBooking/serviceBooking_detail.html"
@@ -88,9 +86,7 @@ class ServiceBookingDeleteView(DeleteView):
     template_name = "serviceBooking/serviceBooking_confirm_delete.html"
     success_url = reverse_lazy("serviceBooking_list")
 
-    def get_success_url(self):
-        return reverse("serviceBooking_list", kwargs={"serviceBooking_id": self.object.pk})
-
+    
 
 
 
