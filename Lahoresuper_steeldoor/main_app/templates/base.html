@@ -1,9 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}Lahore Super Steel Door{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'base.css' %}">
   </head>
   <body>
     <nav>
@@ -22,9 +24,24 @@
 
      
     </nav>
+    
+ {% block content %} {% endblock %} 
+  <hr />  
+    <footer>
+      <p>&copy; 2025 Lahore Super Steel Door. All Rights Reserved.</p>
+      <p>
+        Contact: <a href="mailto:info@lahoresupersteel.com">info@lahoresupersteel.com</a> | 
+        Phone: +92-300-1234567
+      </p>
+      <p>
+        Contact us:
+        <a href="#">Facebook</a> |
+        <a href="#">Instagram</a> |
+        <a href="#">LinkedIn</a> |
+          <a href="https://wa.me/97335389396" target="_blank">WhatsApp</a>
+      </p>
+    </footer>
+    
 
-    <hr />
-
-    {% block content %} {% endblock %}
   </body>
 </html>
