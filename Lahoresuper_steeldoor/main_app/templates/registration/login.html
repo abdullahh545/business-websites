@@ -1,15 +1,18 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
+{% block content %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'login.css' %}">
-
-<h1>Login</h1>
-<div class="login">
+<section class="auth-section">
+  <h1 class="auth-title">Login</h1>
+  <div class="auth-form login-form">
     <form method="post">
-    {% csrf_token %} {{form.as_p}}
-    <button>Sign In</button>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Sign In</button>
     </form>
-</div>
-<p>Dont have an Account? <a href="{% url 'signup' %}">Sign-up here</a></p>
-
-
+  </div>
+  <p class="auth-switch">
+    Don’t have an Account? <a href="{% url 'signup' %}">Sign-up here</a>
+  </p>
+</section>
 {% endblock %}

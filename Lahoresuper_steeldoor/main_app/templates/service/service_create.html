@@ -1,7 +1,14 @@
-{% extends "base.html" %} {% block content %}
-<h2>Create or Update Services</h2>
-<form method="post" enctype="multipart/form-data">
-  {% csrf_token %} {{ form.as_p }}
-  <button type="submit">Save Services</button>
-</form>
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'service.css' %}">
+
+<section class="service-section service-form">
+  <h2>Create services</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save Services</button>
+  </form>
+</section>
 {% endblock %}

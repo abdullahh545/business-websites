@@ -1,25 +1,22 @@
-{% extends "base.html" %} {% block content %}
-<h2>All Bookings</h2>
-<ul>
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'booking.css' %}">
 
-        
-        {{user.role}}
-  {% for booking in serviceBookings.all %}
-  
-  <li>
-
-    {{booking.customer_name }} - {{ booking.service.name }}
-     <a href="{% url 'serviceBooking_detail' booking.id %}">View</a> /
-    <a href="{% url 'serviceBooking_update' booking.id %}">Edit</a> /
-    <a href="{% url 'serviceBooking_delete' booking.id %}">Delete</a>
-    
-  </li>
-
-
-{% empty %}
-<p>No bookings yet.</p>
-{% endfor %}
-
-</ul>
-<a href="{% url 'serviceBooking_create' %}">Create Booking</a>
+<section class="booking-section booking-list">
+  <h2>All Bookings</h2>
+  <ul>
+    {% for booking in serviceBookings.all %}
+    <li>
+      {{ booking.customer_name }} - {{ booking.service.name }}
+      <a href="{% url 'serviceBooking_detail' booking.id %}">View</a> /
+      <a href="{% url 'serviceBooking_update' booking.id %}">Edit</a> /
+      <a href="{% url 'serviceBooking_delete' booking.id %}">Delete</a>
+    </li>
+    {% empty %}
+    <p>No bookings yet.</p>
+    {% endfor %}
+  </ul>
+  <a class="btn-create" href="{% url 'serviceBooking_create' %}">Create Booking</a>
+</section>
 {% endblock %}

@@ -1,0 +1,480 @@
+.booking-list {
+background: #ffffff;
+padding: 3rem;
+border-radius: 12px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+margin-bottom: 2rem;
+}
+
+.booking-list h2 {
+font-family: 'Georgia', serif;
+font-size: 2.5rem;
+color: #1a365d;
+text-align: center;
+margin-bottom: 3rem;
+position: relative;
+}
+
+.booking-list h2::after {
+content: '';
+position: absolute;
+bottom: -10px;
+left: 50%;
+transform: translateX(-50%);
+width: 100px;
+height: 3px;
+background: linear-gradient(90deg, #d4af37, #e53e3e);
+border-radius: 2px;
+}
+
+.booking-list ul {
+list-style: none;
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+gap: 2rem;
+margin-bottom: 2rem;
+}
+
+.booking-list li {
+background: #f7fafc;
+border: 1px solid #e2e8f0;
+border-radius: 12px;
+padding: 2rem;
+transition: all 0.3s ease;
+position: relative;
+overflow: hidden;
+}
+
+.booking-list li::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+height: 4px;
+background: linear-gradient(90deg, #2d5a87, #d4af37);
+}
+
+.booking-list li:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+border-color: #d4af37;
+}
+
+.booking-list li p {
+font-size: 1.1rem;
+color: #1a202c;
+margin-bottom: 1rem;
+font-weight: 500;
+}
+
+.booking-list li a {
+display: inline-block;
+background: #1a365d;
+color: #ffffff;
+padding: 0.5rem 1rem;
+text-decoration: none;
+border-radius: 4px;
+font-size: 0.9rem;
+margin-right: 0.5rem;
+margin-top: 1rem;
+transition: all 0.3s ease;
+font-weight: 500;
+}
+
+.booking-list li a:hover {
+background: #2d5a87;
+transform: translateY(-2px);
+box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.booking-list li a[href*="delete"]:hover {
+background: #e53e3e;
+}
+
+.booking-list li a[href*="update"]:hover {
+background: #d4af37;
+color: #1a202c;
+}
+
+.booking-list p {
+text-align: center;
+font-size: 1.2rem;
+color: #4a5568;
+font-style: italic;
+margin: 3rem 0;
+}
+
+.booking-form {
+background: #ffffff;
+padding: 3rem;
+border-radius: 12px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+margin-bottom: 2rem;
+max-width: 700px;
+margin-left: auto;
+margin-right: auto;
+}
+
+.booking-form h2 {
+font-family: 'Georgia', serif;
+font-size: 2rem;
+color: #1a365d;
+margin-bottom: 2rem;
+text-align: center;
+position: relative;
+}
+
+.booking-form h2::after {
+content: '';
+position: absolute;
+bottom: -10px;
+left: 50%;
+transform: translateX(-50%);
+width: 60px;
+height: 3px;
+background: linear-gradient(90deg, #d4af37, #e53e3e);
+border-radius: 2px;
+}
+
+.booking-form form {
+display: flex;
+flex-direction: column;
+gap: 1.5rem;
+}
+
+.booking-form form p {
+display: flex;
+flex-direction: column;
+gap: 0.5rem;
+}
+
+.booking-form label {
+font-weight: 600;
+color: #1a365d;
+font-size: 1rem;
+}
+
+.booking-form input,
+.booking-form textarea,
+.booking-form select {
+padding: 1rem;
+border: 2px solid #e2e8f0;
+border-radius: 8px;
+font-size: 1rem;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+transition: all 0.3s ease;
+background: #ffffff;
+}
+
+.booking-form input:focus,
+.booking-form textarea:focus,
+.booking-form select:focus {
+outline: none;
+border-color: #1a365d;
+box-shadow: 0 0 0 3px rgba(26, 54, 93, 0.1);
+}
+
+.booking-form textarea {
+min-height: 120px;
+resize: vertical;
+}
+
+.booking-form button {
+background: linear-gradient(135deg, #e53e3e, #c53030);
+color: #ffffff;
+border: none;
+padding: 1.5rem 2rem;
+border-radius: 8px;
+font-size: 1.1rem;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.3s ease;
+margin-top: 1.5rem;
+box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.booking-form button:hover {
+background: linear-gradient(135deg, #c53030, #9c2626);
+transform: translateY(-2px);
+box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.booking-detail {
+background: #ffffff;
+padding: 3rem;
+border-radius: 12px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+margin-bottom: 2rem;
+max-width: 600px;
+margin-left: auto;
+margin-right: auto;
+}
+
+.booking-detail h2 {
+font-family: 'Georgia', serif;
+font-size: 2rem;
+color: #1a365d;
+margin-bottom: 2rem;
+text-align: center;
+position: relative;
+}
+
+.booking-detail h2::after {
+content: '';
+position: absolute;
+bottom: -10px;
+left: 50%;
+transform: translateX(-50%);
+width: 60px;
+height: 3px;
+background: linear-gradient(90deg, #d4af37, #e53e3e);
+border-radius: 2px;
+}
+
+.booking-detail .booking-info {
+background: #f7fafc;
+padding: 2rem;
+border-radius: 8px;
+border-left: 4px solid #d4af37;
+margin-bottom: 2rem;
+}
+
+.booking-detail .booking-info p {
+font-size: 1.1rem;
+line-height: 1.8;
+color: #1a202c;
+margin-bottom: 1rem;
+}
+
+.booking-detail .booking-info strong {
+color: #1a365d;
+font-weight: 700;
+}
+
+.booking-detail .booking-actions {
+display: flex;
+gap: 1.5rem;
+justify-content: center;
+flex-wrap: wrap;
+margin-top: 2rem;
+}
+
+.booking-detail .booking-actions a {
+display: inline-block;
+padding: 1rem 2rem;
+text-decoration: none;
+border-radius: 8px;
+font-weight: 600;
+transition: all 0.3s ease;
+}
+
+.booking-detail .booking-actions a[href*="update"] {
+background: #1a365d;
+color: #ffffff;
+}
+
+.booking-detail .booking-actions a[href*="update"]:hover {
+background: #2d5a87;
+transform: translateY(-2px);
+}
+
+.booking-detail .booking-actions a[href*="delete"] {
+background: #e53e3e;
+color: #ffffff;
+}
+
+.booking-detail .booking-actions a[href*="delete"]:hover {
+background: #c53030;
+transform: translateY(-2px);
+}
+
+.booking-detail .booking-actions a[href*="serviceBooking_list"] {
+background: #e2e8f0;
+color: #1a202c;
+}
+
+.booking-detail .booking-actions a[href*="serviceBooking_list"]:hover {
+background: #4a5568;
+color: #ffffff;
+transform: translateY(-2px);
+}
+
+.booking-delete {
+background: #ffffff;
+padding: 3rem;
+border-radius: 12px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+margin-bottom: 2rem;
+max-width: 500px;
+margin-left: auto;
+margin-right: auto;
+text-align: center;
+border-left: 4px solid #e53e3e;
+}
+
+.booking-delete h2 {
+font-family: 'Georgia', serif;
+font-size: 1.8rem;
+color: #e53e3e;
+margin-bottom: 1.5rem;
+}
+
+.booking-delete p {
+font-size: 1.1rem;
+color: #4a5568;
+margin-bottom: 2rem;
+}
+
+.booking-delete form {
+display: flex;
+gap: 1.5rem;
+justify-content: center;
+flex-wrap: wrap;
+}
+
+.booking-delete button {
+padding: 1rem 2rem;
+border: none;
+border-radius: 8px;
+font-size: 1rem;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.3s ease;
+}
+
+.booking-delete button[type="submit"] {
+background: #e53e3e;
+color: #ffffff;
+}
+
+.booking-delete button[type="submit"]:hover {
+background: #c53030;
+transform: translateY(-2px);
+}
+
+.booking-delete a {
+background: #e2e8f0;
+color: #1a202c;
+text-decoration: none;
+padding: 1rem 2rem;
+border-radius: 8px;
+font-weight: 600;
+transition: all 0.3s ease;
+}
+
+.booking-delete a:hover {
+background: #4a5568;
+color: #ffffff;
+transform: translateY(-2px);
+}
+
+.booking-update {
+background: #ffffff;
+padding: 3rem;
+border-radius: 12px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+margin-bottom: 2rem;
+max-width: 700px;
+margin-left: auto;
+margin-right: auto;
+}
+
+.booking-update h2 {
+font-family: 'Georgia', serif;
+font-size: 2rem;
+color: #1a365d;
+margin-bottom: 2rem;
+text-align: center;
+position: relative;
+}
+
+.booking-update h2::after {
+content: '';
+position: absolute;
+bottom: -10px;
+left: 50%;
+transform: translateX(-50%);
+width: 60px;
+height: 3px;
+background: linear-gradient(90deg, #d4af37, #e53e3e);
+border-radius: 2px;
+}
+
+.booking-status {
+display: inline-block;
+padding: 0.5rem 1rem;
+border-radius: 4px;
+font-size: 0.9rem;
+font-weight: 600;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+}
+
+.booking-status.pending {
+background: #fef3c7;
+color: #92400e;
+}
+
+.booking-status.confirmed {
+background: #d1fae5;
+color: #065f46;
+}
+
+.booking-status.completed {
+background: #dbeafe;
+color: #1e40af;
+}
+
+.booking-status.cancelled {
+background: #fee2e2;
+color: #991b1b;
+}
+
+@media (max-width: 768px) {
+.booking-list ul {
+grid-template-columns: 1fr;
+gap: 1.5rem;
+}
+
+.booking-list h2 {
+font-size: 2rem;
+}
+
+.booking-form,
+.booking-detail,
+.booking-update,
+.booking-delete {
+margin: 0 1rem;
+padding: 2rem;
+}
+
+.booking-detail .booking-actions,
+.booking-delete form {
+flex-direction: column;
+align-items: center;
+}
+
+.booking-detail .booking-actions a,
+.booking-delete a,
+.booking-delete button {
+width: 100%;
+text-align: center;
+}
+}
+
+@media (max-width: 480px) {
+.booking-list h2 {
+font-size: 1.8rem;
+}
+
+.booking-list li {
+padding: 1.5rem;
+}
+
+.booking-detail h2,
+.booking-form h2,
+.booking-update h2 {
+font-size: 1.8rem;
+}
+}

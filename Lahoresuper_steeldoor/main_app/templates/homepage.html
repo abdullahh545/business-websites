@@ -1,26 +1,59 @@
-{% extends 'base.html' %} {% block content %}
-<section class="hero">
-  <h1>Welcome to Our Company</h1>
-  <p>Providing top-notch steel door solutions.</p>
-</section>
+{% extends 'base.html' %}
 
-<section class="services">
-  <h2>Our Services</h2>
-  <ul>
-    {% for service in services %}
-    <li>
-      <h3>{{ service.name }}</h3>
-      <p>{{ service.description }}</p>
-      <!-- {% if user.is_authenticated %} -->
-      <a href="{% url 'serviceBooking_create' %}">Book Now</a>
-      {% endif %}
-    </li>
-    {% endfor %}
-  </ul>
+{% block content %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'base.css' %}">
+<section class="hero">
+  <div class="hero-content">
+    <h1>Lahore Super Welding & Fabrication</h1>
+    <p>Premium steel door solutions for your home and business. Quality, security, and style combined.</p>
+  </div>
 </section>
 
 <section class="about">
-  <h2>About Us</h2>
-  <p>Learn more about our mission and values.</p>
+  <div class="about-content">
+    <h2>About Us</h2>
+    <p>
+      We are a specialized steel fabrication and welding company delivering high-quality
+      doors, gates, and industrial solutions across Bahrain. Over the years, we have worked
+      on various large-scale projects, serving both private and commercial clients. 
+      Our portfolio highlights our expertise and trust within the industry.
+    </p>
+  </div>
+
+   <div class="about-video">
+    <video autoplay loop muted playsinline>
+      <source src="{% static 'animation/my_animation.mp4' %}" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="portfolio">
+    <h3>Our Portfolio</h3>
+    <ul class="portfolio-list">
+      <li>3 Story building – Dar Al Jinnah, Muharraq</li>
+      <li>2 Story building – Dar Al Riffa</li>
+      <li>28 Story building – Capricon Building at Juffair</li>
+      <li>Electricity substations – Door installations</li>
+      <li>Chequered plate work in multiple buildings</li>
+      <li>Main gate – Montreal showroom at Sitra</li>
+      <li>Fabrication works – Jasco</li>
+      <li>Subcontractor – Al-Khaja Factories (Substation steel doors installation)</li>
+      <li>Subcontractor – Ameeri Industries (Substation steel doors installation)</li>
+      <li>Subcontractor – Banz Trading (Substation steel doors installation)</li>
+      <li>Subcontractor – Manama Switchgear (Steel doors installation)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Portfolio Image Section -->
+<section class="portfolio-image">
+  <div class="portfolio-image-content">
+    <h2>Our Work in Action</h2>
+    <p>See the quality and craftsmanship of our steel door installations</p>
+    <div class="main-image-container">
+      <img src="{% static 'images/portfolio-main.jpg' %}" alt="Lahore Super Steel Door - Our Work" class="main-portfolio-image">
+    </div>
+  </div>
 </section>
 {% endblock %}

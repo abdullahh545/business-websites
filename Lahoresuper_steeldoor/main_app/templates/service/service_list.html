@@ -1,27 +1,30 @@
-{% extends "base.html" %} {% block content %}
-<h1>All Services</h1>
-<ul>
-  {% for service in services %}
-  <li>
-    <a href="{% url 'service_detail' service.pk %}">{{ service.name }}</a>
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'service.css' %}">
 
-    - {{ service.price }}bd
-    {% if call.user == user or user.role == user.Role.ADMIN %}
-    <a href="{% url 'service_update' service.id %}">Edit</a> 
-    <a href="{% url 'service_delete' service.id %}">Delete</a> 
-    {% endif %}
-  </li>
-  {% empty %}
-  <li>No services found.</li>
-  {% endfor %}
-</ul>
-{% if call.user == user or user.role == user.Role.ADMIN %}
-<a href="{% url 'service_create' %}">create service</a>
-{% endif %}
-</hr>
-<a href="{% url 'serviceBooking_create' %}">Book Now</a>
+<section class="service-section service-list">
+  <h1>All Services</h1>
+  <ul>
+    {% for service in services %}
+    <li>
+      <a href="{% url 'service_detail' service.pk %}">{{ service.name }}</a> - {{ service.price }} BD
+      {% if user.is_authenticated and user.role == user.Role.ADMIN %}
+      <a href="{% url 'service_update' service.id %}">Edit</a> |
+      <a href="{% url 'service_delete' service.id %}">Delete</a>
+      {% endif %}
+    </li>
+    {% empty %}
+    <li>No services found.</li>
+    {% endfor %}
+  </ul>
+
+  {% if user.is_authenticated and user.role == user.Role.ADMIN %}
+  <a class="btn-create" href="{% url 'service_create' %}">Create Service</a>
+  {% endif %}
 
 
- 
+</section>
+  <a class="btn-book-now" href="{% url 'serviceBooking_create' %}">Book Now</a> 
 
 {% endblock %}

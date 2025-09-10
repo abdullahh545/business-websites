@@ -1,7 +1,14 @@
-{% extends "base.html" %} {% block content %}
-<h2>Update Booking</h2>
-<form method="post"enctype="multipart/form-data">
-  {% csrf_token %} {{ form.as_p }}
-  <button type="submit">Save Booking</button>
-</form>
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'booking.css' %}">
+
+<section class="booking-section booking-form">
+  <h2>Update Booking</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Update Booking</button>
+  </form>
+</section>
 {% endblock %}

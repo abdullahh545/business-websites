@@ -17,11 +17,11 @@ class Service(models.Model):
     name = models.CharField(max_length=120)
     description = models.TextField(max_length=9999)
     price = models.IntegerField()
-    category = models.CharField(max_length=255)  # fixed typo "catergory"
+    category = models.CharField(max_length=255)  
 
     is_active = models.BooleanField(default=True)
     product_image = models.ImageField(
-        upload_to="service_images/",  # better to give a folder
+        upload_to="service_images/",  
         blank=True,
         null=True
     )
